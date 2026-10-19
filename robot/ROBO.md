@@ -34,7 +34,7 @@ Roda na nuvem (rotina "Robô Contencioso (Argos)" no claude.ai) às **7h45 e 19h
    - Mensagem ambígua (não dá para saber a qual demanda se refere): registrar só no `feed` com prefixo "[revisar]".
 5. **Feed:** inserir no topo de `feed` um item por movimento relevante `{data, autor, texto}` em uma linha. Máximo 200 itens.
 6. `teams.ultima_msg` = `createdDateTime` da mensagem mais nova lida; `atualizado_em` = agora (UTC ISO).
-7. `python robot/build.py --push`
+7. `python robot/build.py --push` (**sempre**, mesmo sem mensagens novas: os alertas do painel dependem da data de publicação)
 8. **Só na rodada da manhã (antes das 12h, dia útil):** `python robot/digest.py` e postar o HTML de `private/digest.html` no chat (uma mensagem, formato HTML), se ainda não houver mensagem de hoje começando com 🤖 "Argos · agenda do contencioso".
 
 ## Regras
