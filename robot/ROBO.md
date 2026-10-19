@@ -37,6 +37,13 @@ Roda na nuvem (rotina "Robô Contencioso (Argos)" no claude.ai) às **7h45 e 19h
 7. `python robot/build.py --push` (**sempre**, mesmo sem mensagens novas: os alertas do painel dependem da data de publicação)
 8. **Só na rodada da manhã (antes das 12h, dia útil):** `python robot/digest.py` e postar o HTML de `private/digest.html` no chat (uma mensagem, formato HTML), se ainda não houver mensagem de hoje começando com 🤖 "Argos · agenda do contencioso".
 
+## Dúvidas (perguntar ao time pelo grupo)
+
+- Quando o robô **não tiver certeza** (a qual item a mensagem se refere, se algo foi entregue/protocolado, quem é o responsável, um valor ou data ambíguos), ele **não chuta**: grava a pergunta no campo `duvida` do item (e `revisar: true`), ou em `duvidas_gerais` (lista na raiz) se não for de um item só.
+- As dúvidas abertas saem na agenda das 7h45, na seção "❓ Dúvidas do robô" (o `digest.py` já monta). É a mesma mensagem do dia: não mandar mensagem separada.
+- Em cada rodada, procurar no grupo **respostas** às dúvidas (mensagens que respondem à agenda do robô ou que citam o item). Ao aplicar a resposta: atualizar o item, registrar no `historico` ("Dúvida respondida por Fulano: ..."), apagar `duvida` e pôr `revisar: false`; tirar de `duvidas_gerais` o que foi respondido.
+- Se a resposta não resolver, reescrever a `duvida` de forma mais objetiva.
+
 ## Regras
 
 - O robô só **lê** o Teams. A única coisa que escreve é a agenda do dia (passo 8).

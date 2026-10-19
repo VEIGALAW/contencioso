@@ -78,6 +78,9 @@ def main():
         p.append("<p>✅ <b>Concluídas</b></p><ul>" + "".join(f"<li>{escape(x['cliente'])}: {escape(x['providencia'])}</li>" for x in concl) + "</ul>")
     if novas:
         p.append("<p>🆕 <b>Novas demandas</b></p><ul>" + "".join(item(x, f" · {escape(x.get('responsavel') or 'sem responsável')}") for x in novas) + "</ul>")
+    duv = [f"<b>{escape(x['cliente'])}</b>: {escape(x['duvida'])}" for x in db["demandas"] if x.get("duvida")] + [escape(q) for q in db.get("duvidas_gerais", [])]
+    if duv:
+        p.append("<p>❓ <b>Dúvidas do robô: respondam aqui no grupo</b> (pode ser em texto livre; leio na próxima rodada)</p><ol>" + "".join(f"<li>{q}</li>" for q in duv) + "</ol>")
     p.append(secao("🚨 Prazo fatal vencido", vencidos))
     p.append(secao("📅 Para hoje (meta interna ou fatal)", hoje_l))
     p.append(secao("⏳ Próximos 3 dias úteis", prox))
